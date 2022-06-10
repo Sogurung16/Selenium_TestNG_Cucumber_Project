@@ -9,7 +9,7 @@ public class PropertiesLoader {
     public static Properties getProperties(){
         Properties properties = new Properties();
         try {
-            properties.load(new FileReader("src/test/java/properties.properties"));
+            properties.load(new FileReader("src/test/resources/properties.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

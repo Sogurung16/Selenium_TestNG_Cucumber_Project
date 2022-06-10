@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Yahoo Test Suite">
+    <test name="SigninPage"   >
+        <parameter name="Browser" value="chrome"></parameter>
+        <parameter name="URL" value="yahoo.com"></parameter>
+        <packages>
+            <package name="src/test/java/org/sonam/login" />
+        </packages>
+        <classes>
+            <class name ="org.sonam.login.SignInUsernamePage"></class>
+        </classes>
+    </test>
+</suite>

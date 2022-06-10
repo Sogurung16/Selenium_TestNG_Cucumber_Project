@@ -1,5 +1,6 @@
 package org.sonam.base;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.sonam.util.PropertiesLoader;
@@ -12,6 +13,7 @@ public class TestBase {
     public static void initialisation(){
         String browserName = PropertiesLoader.getProperties().getProperty("BrowserName");
         if(browserName.equalsIgnoreCase("chrome")){
+            WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
         }
         //can add additional browsers (e.g. else if browser name = firefox)
