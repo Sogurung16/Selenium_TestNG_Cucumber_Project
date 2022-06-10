@@ -5,10 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sonam.base.TestBase;
-
-import java.time.Duration;
 
 public class LandingPage extends TestBase {
     @FindBy(className = "_yb_yulhv")
@@ -18,7 +15,6 @@ public class LandingPage extends TestBase {
 
     public LandingPage() {
         PageFactory.initElements(webDriver, this);
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofMillis(5000));
         wait.until(ExpectedConditions.visibilityOfElementLocated((By.name("agree"))));
         if(acceptAllCookiesButton!=null){
             acceptAllCookiesButton.click();

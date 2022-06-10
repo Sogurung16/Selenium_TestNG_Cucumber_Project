@@ -5,11 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sonam.base.TestBase;
-
-import java.time.Duration;
-import java.time.temporal.TemporalUnit;
 
 public class SignInPasswordPage extends TestBase {
     @FindBy(id = "login-passwd")
@@ -19,7 +15,6 @@ public class SignInPasswordPage extends TestBase {
 
     public SignInPasswordPage() {
         PageFactory.initElements(webDriver, this);
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofMillis(5000));
         wait.until(ExpectedConditions.visibilityOfElementLocated((By.id("login-passwd"))));
     }
 
