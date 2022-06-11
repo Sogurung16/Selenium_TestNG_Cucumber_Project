@@ -13,8 +13,9 @@ public class NavigationTest {
     private LandingPage landingPage;
 
     @BeforeMethod
-    public void setup(){
-        TestBase.initialisation();
+    @Parameters({"browser", "url"})
+    public void setup(String browser, String url){
+        TestBase.initialisation(browser, url);
     }
 
     @Test(description = "Navigation Test", invocationCount = 5)
@@ -26,6 +27,8 @@ public class NavigationTest {
         FinancePage financePage = homePage.goToFinancePage();
         MarketDataCalender marketDataCalender = financePage.goToMarketDataCalenderPage();
     }
+    //successful end url navi
+
     @AfterMethod
     public void teardown(){
         TestBase.close();

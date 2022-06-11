@@ -12,16 +12,14 @@ public class TestBase {
     public static WebDriver webDriver;
     public static WebDriverWait wait;
 
-    public static void initialisation(){
-        String browserName = PropertiesLoader.getProperties().getProperty("BrowserName");
+    public static void initialisation(String browserName, String url){
         if(browserName.equalsIgnoreCase("chrome")){
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
         }
         //can add additional browsers (e.g. else if browser name = firefox)
         wait = new WebDriverWait(webDriver, Duration.ofMillis(3000));
-        String URL = PropertiesLoader.getProperties().getProperty("URL");
-        webDriver.get(URL);
+        webDriver.get(url);
     }
 
     public static void close(){
