@@ -9,7 +9,7 @@
             <package name="src/test/java/org/sonam/login" />
         </packages>
         <classes>
-            <class name ="org.sonam.login.Navigation"></class>
+            <class name ="org.sonam.tests.NavigationTest"></class>
         </classes>
     </test>
 </suite>

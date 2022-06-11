@@ -1,12 +1,10 @@
-package org.sonam.login;
+package org.sonam.nav;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.sonam.base.TestBase;
-import org.sonam.nav.FinancePage;
 
 public class HomePage extends TestBase {
     @FindBy(id = "root_8")
@@ -14,7 +12,7 @@ public class HomePage extends TestBase {
 
     public HomePage() {
         PageFactory.initElements(webDriver, this);
-        wait.until(ExpectedConditions.visibilityOfElementLocated((By.id("root_8"))));
+        wait.until(ExpectedConditions.visibilityOf(financeTab));
     }
 
     public FinancePage goToFinancePage(){

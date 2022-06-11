@@ -1,11 +1,11 @@
 package org.sonam.login;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.sonam.base.TestBase;
+import org.sonam.nav.HomePage;
 
 public class SignInPasswordPage extends TestBase {
     @FindBy(id = "login-passwd")
@@ -15,7 +15,7 @@ public class SignInPasswordPage extends TestBase {
 
     public SignInPasswordPage() {
         PageFactory.initElements(webDriver, this);
-        wait.until(ExpectedConditions.visibilityOfElementLocated((By.id("login-passwd"))));
+        wait.until(ExpectedConditions.visibilityOf(passwdInput));
     }
 
     public HomePage gotToHomePage(String password){

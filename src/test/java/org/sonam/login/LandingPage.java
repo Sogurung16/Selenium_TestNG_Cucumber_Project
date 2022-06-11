@@ -1,6 +1,5 @@
 package org.sonam.login;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -15,11 +14,11 @@ public class LandingPage extends TestBase {
 
     public LandingPage() {
         PageFactory.initElements(webDriver, this);
-        wait.until(ExpectedConditions.visibilityOfElementLocated((By.name("agree"))));
+        wait.until(ExpectedConditions.visibilityOf(acceptAllCookiesButton));
         if(acceptAllCookiesButton!=null){
             acceptAllCookiesButton.click();
         }
-        wait.until(ExpectedConditions.visibilityOfElementLocated((By.className("_yb_yulhv"))));
+        wait.until(ExpectedConditions.visibilityOf(signinButton));
     }
 
     public SignInUsernamePage gotToSignInPage(){

@@ -19,7 +19,7 @@ public class TestBase {
             webDriver = new ChromeDriver();
         }
         //can add additional browsers (e.g. else if browser name = firefox)
-        wait = new WebDriverWait(webDriver, Duration.ofMillis(5000));
+        wait = new WebDriverWait(webDriver, Duration.ofMillis(3000));
         String URL = PropertiesLoader.getProperties().getProperty("URL");
         webDriver.get(URL);
     }
