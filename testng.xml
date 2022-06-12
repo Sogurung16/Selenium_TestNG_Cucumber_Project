@@ -2,31 +2,79 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Yahoo Test Suite">
-<!--    <test name="Navigation"   >-->
-<!--        <parameter name="browser" value="chrome"></parameter>-->
-<!--        <parameter name="url" value="https://uk.yahoo.com/"></parameter>-->
-<!--        <packages>-->
-<!--            <package name="src/test/java/org/sonam/login" />-->
-<!--        </packages>-->
-<!--        <classes>-->
-<!--                        <class name ="org.sonam.tests.NavigationTest"></class>-->
-<!--        </classes>-->
-<!--    </test>-->
-    <test name="CalendarPage"   >
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="url" value="https://uk.yahoo.com/"></parameter>
+    <!--<test name="Navigation">
         <parameter name="browser" value="chrome"></parameter>
         <parameter name="url" value="https://uk.yahoo.com/"></parameter>
         <packages>
             <package name="src/test/java/org/sonam/login" />
         </packages>
         <classes>
+            <class name ="org.sonam.tests.NavigationTest">\</class>
+        </classes>
+    </test>-->
+    <test name="Values Checks">
+        <packages>
+            <package name="src/test/java/org/sonam" />
+        </packages>
+        <!--<groups>
+            <run>
+                <include name="Values Check"></include>
+            </run>
+        </groups>-->
+        <classes>
             <class name="org.sonam.tests.CalendarTest">
                 <methods>
-                    <include name="isEarningsSpellingCorrect"></include>
-                    <include name="isStockSplitsSpellingCorrect"></include>
-                    <include name="isIPO_Pricing_SpellingCorrect"></include>
-                    <include name="isEconomicEventsSpellingCorrect"></include>
+                    <include name="areValuesClickable"></include>
                 </methods>
             </class>
         </classes>
     </test>
+    <!--<test name="Spelling Checks">
+        <parameter name="earningsString" value="Earnings"></parameter>
+        <parameter name="stockSplitsString" value="Stock splits"></parameter>
+        <parameter name="ipo_PricingString" value="IPO pricing"></parameter>
+        <parameter name="economicEventsString" value="Economic events"></parameter>>
+        <packages>
+            <package name="src/test/java/org/sonam" />
+        </packages>
+        <groups>
+            <run>
+        <include name="Spelling Check"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.sonam.tests.CalendarTest"></class>
+        </classes>
+    </test>-->
+    <!--<test name="Values Numbers Check">
+        <packages>
+            <package name="src/test/java/org/sonam" />
+        </packages>
+        <groups>
+            <run>
+        <include name="Value Number Check"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.sonam.tests.CalendarTest"></class>
+        </classes>
+    </test>-->
+    <!--<test name="Date Check">
+        <parameter name="dateDayNum" value="16"></parameter>
+        <parameter name="dateMonth" value="Jun"></parameter>
+        <parameter name="dateDay" value="Thu"></parameter>>
+        <packages>
+            <package name="src/test/java/org/sonam" />
+        </packages>
+        <groups>
+            <run>
+                <include name="Value Number Check"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.sonam.tests.CalendarTest"></class>
+        </classes>
+    </test>-->
 </suite>

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.sonam.base.TestBase;
 import org.sonam.nav.HomePage;
 
+import java.time.Duration;
+
 public class SignInPasswordPage extends TestBase {
     @FindBy(id = "login-passwd")
     WebElement passwdInput;

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.sonam.base.TestBase;
 
+import java.time.Duration;
+
 public class SignInUsernamePage extends TestBase{
     @FindBy(id = "login-username")
     WebElement usernameInput;
