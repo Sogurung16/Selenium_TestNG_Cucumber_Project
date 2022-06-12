@@ -4,6 +4,9 @@
 <suite name="Yahoo Test Suite">
     <parameter name="browser" value="chrome"></parameter>
     <parameter name="url" value="https://uk.yahoo.com/"></parameter>
+    <parameter name="year" value="2022"></parameter>
+    <parameter name="month" value="June"></parameter>
+    <parameter name="day" value="16"></parameter>
     <!--<test name="Navigation">
         <parameter name="browser" value="chrome"></parameter>
         <parameter name="url" value="https://uk.yahoo.com/"></parameter>
@@ -15,6 +18,10 @@
         </classes>
     </test>-->
     <test name="Values Checks">
+        <parameter name="dateDay" value="Thu"></parameter>>
+        <parameter name="dateMonth" value="Jun"></parameter>
+        <parameter name="dateDayNum" value="16"></parameter>
+
         <packages>
             <package name="src/test/java/org/sonam" />
         </packages>
@@ -26,7 +33,7 @@
         <classes>
             <class name="org.sonam.tests.CalendarTest">
                 <methods>
-                    <include name="areValuesClickable"></include>
+                    <include name="correctDateSet"></include>
                 </methods>
             </class>
         </classes>
@@ -62,8 +69,6 @@
         </classes>
     </test>-->
     <!--<test name="Date Check">
-        <parameter name="dateDayNum" value="16"></parameter>
-        <parameter name="dateMonth" value="Jun"></parameter>
         <parameter name="dateDay" value="Thu"></parameter>>
         <packages>
             <package name="src/test/java/org/sonam" />

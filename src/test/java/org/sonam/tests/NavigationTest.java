@@ -1,6 +1,6 @@
 package org.sonam.tests;
 
-import org.sonam.MarketDataCalender;
+import org.sonam.CalendarPage;
 import org.sonam.base.TestBase;
 import org.sonam.login.LandingPage;
 import org.sonam.login.SignInPasswordPage;
@@ -25,7 +25,7 @@ public class NavigationTest {
         SignInPasswordPage signInPasswordPage = signInUsernamePage.goToSignInPasswordPage("FirstTestLogin_12");
         HomePage homePage = signInPasswordPage.gotToHomePage("TestAbc_12!");
         FinancePage financePage = homePage.goToFinancePage();
-        MarketDataCalender marketDataCalender = financePage.goToMarketDataCalenderPage();
+        CalendarPage calendarPage = financePage.goToMarketDataCalenderPage();
     }
     //successful end url navi
 

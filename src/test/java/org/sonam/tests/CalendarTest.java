@@ -1,11 +1,6 @@
 package org.sonam.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.PageFactory;
 import org.sonam.CalendarPage;
-import org.sonam.MarketDataCalender;
 import org.sonam.base.TestBase;
 import org.sonam.login.LandingPage;
 import org.sonam.login.SignInPasswordPage;
@@ -13,21 +8,23 @@ import org.sonam.login.SignInUsernamePage;
 import org.sonam.nav.FinancePage;
 import org.sonam.nav.HomePage;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
 
 public class CalendarTest {
-    private MarketDataCalender marketDataCalender;
     private CalendarPage calendarPage;
     private LandingPage landingPage;
 
     //setup: Navigate to Calender Page
     @BeforeMethod(alwaysRun = true)
-    @Parameters({"browser", "url"})
-    public void setup(String browser, String url){
-        LocalDate testDate = LocalDate.of(2022, Month.JUNE,9);
+    @Parameters({"browser", "url","day","month","year"})
+    public void setup(String browser, String url, String year, String month, String day){
+        LocalDate testDate = LocalDate.of(Integer.valueOf(day), Month.valueOf(month.toUpperCase()),Integer.valueOf(year));
 
         TestBase.initialisation(browser, url);
         landingPage = new LandingPage();
@@ -35,8 +32,8 @@ public class CalendarTest {
         SignInPasswordPage signInPasswordPage = signInUsernamePage.goToSignInPasswordPage("SonamtestUI123");
         HomePage homePage = signInPasswordPage.gotToHomePage("SonamtestUI123");
         FinancePage financePage = homePage.goToFinancePage();
-        marketDataCalender = financePage.goToMarketDataCalenderPage();
-        calendarPage = marketDataCalender.submitDate(testDate);
+        calendarPage = financePage.goToMarketDataCalenderPage();
+        calendarPage = calendarPage.submitDate(testDate);
     }
 
     @Test(testName = "Thursday values list is not empty",groups = {"Values Check"})

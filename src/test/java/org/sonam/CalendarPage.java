@@ -46,8 +46,6 @@ public class CalendarPage extends TestBase {
         action.sendKeys(dateSelector, simpleDateFormat.format(date)).build().perform();
         action.click(applyDateChangeButton).build().perform();
 
-        /*DateTimeFormatter urlDateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        webDriver.navigate().to(webDriver.getCurrentUrl()+"?day="+urlDateFormat.format(date));*/
         return new CalendarPage();
     }
 
