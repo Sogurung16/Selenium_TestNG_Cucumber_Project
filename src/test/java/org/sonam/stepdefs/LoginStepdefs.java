@@ -12,10 +12,10 @@ import org.sonam.util.PropertiesLoader;
 import org.testng.Assert;
 
 public class LoginStepdefs{
-    LandingPage landingPage;
-    SignInUsernamePage signInUsernamePage;
-    SignInPasswordPage signInPasswordPage;
-    HomePage homePage;
+    private static LandingPage landingPage;
+    private static SignInUsernamePage signInUsernamePage;
+    private static SignInPasswordPage signInPasswordPage;
+    private static HomePage homePage;
 
     @Given("I am on the Username page")
     public void iAmOnTheUsernamePage() {

@@ -15,12 +15,12 @@ import org.sonam.util.PropertiesLoader;
 import org.testng.Assert;
 
 public class NavigationStepdefs {
-    LandingPage landingPage;
-    SignInUsernamePage signInUsernamePage;
-    SignInPasswordPage signInPasswordPage;
-    HomePage homePage;
-    FinancePage financePage;
-    CalendarPage calendarPage;
+    private static LandingPage landingPage;
+    private static SignInUsernamePage signInUsernamePage;
+    private static SignInPasswordPage signInPasswordPage;
+    private static HomePage homePage;
+    private static FinancePage financePage;
+    private static CalendarPage calendarPage;
 
     @Given("I am on the Yahoo landing page")
     public void iAmOnTheYahoolandingPage() {
