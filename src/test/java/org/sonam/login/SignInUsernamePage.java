@@ -20,8 +20,11 @@ public class SignInUsernamePage extends TestBase{
         wait.until(ExpectedConditions.visibilityOfElementLocated((By.id("login-username"))));
     }
 
-    public SignInPasswordPage goToSignInPasswordPage(String username){
+    public void enterUsername(String username){
         usernameInput.sendKeys(username);
+    }
+
+    public SignInPasswordPage goToSignInPasswordPage(){
         nextButton.click();
         return new SignInPasswordPage();
     }

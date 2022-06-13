@@ -7,8 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.sonam.base.TestBase;
 import org.sonam.nav.HomePage;
 
-import java.time.Duration;
-
 public class SignInPasswordPage extends TestBase {
     @FindBy(id = "login-passwd")
     WebElement passwdInput;
@@ -20,8 +18,10 @@ public class SignInPasswordPage extends TestBase {
         wait.until(ExpectedConditions.visibilityOf(passwdInput));
     }
 
-    public HomePage gotToHomePage(String password){
+    public void enterPassword(String password){
         passwdInput.sendKeys(password);
+    }
+    public HomePage goToHomePage(){
         nextButton.click();
         return new HomePage();
     }

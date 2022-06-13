@@ -7,6 +7,7 @@ import org.sonam.login.SignInPasswordPage;
 import org.sonam.login.SignInUsernamePage;
 import org.sonam.nav.FinancePage;
 import org.sonam.nav.HomePage;
+import org.sonam.util.ExcelDataProvider;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,25 +19,30 @@ import java.time.Month;
 
 public class CalendarTest {
     private CalendarPage calendarPage;
-    private LandingPage landingPage;
 
     //setup: Navigate to Calender Page
     @BeforeMethod(alwaysRun = true)
-    @Parameters({"browser", "url","day","month","year"})
-    public void setup(String browser, String url, String year, String month, String day){
+    @Parameters({"browser", "url","day","month","year","username","password"})
+    public void setup(String browser, String url, String year, String month, String day, String username, String password){
         LocalDate testDate = LocalDate.of(Integer.valueOf(day), Month.valueOf(month.toUpperCase()),Integer.valueOf(year));
 
         TestBase.initialisation(browser, url);
-        landingPage = new LandingPage();
+        LandingPage landingPage = new LandingPage();
+
         SignInUsernamePage signInUsernamePage = landingPage.gotToSignInPage();
-        SignInPasswordPage signInPasswordPage = signInUsernamePage.goToSignInPasswordPage("SonamtestUI123");
-        HomePage homePage = signInPasswordPage.gotToHomePage("SonamtestUI123");
+        signInUsernamePage.enterUsername(ExcelDataProvider.getCellValue(password));
+
+        SignInPasswordPage signInPasswordPage = signInUsernamePage.goToSignInPasswordPage();
+        signInPasswordPage.enterPassword(ExcelDataProvider.getCellValue(password));
+
+        HomePage homePage = signInPasswordPage.goToHomePage();
+
         FinancePage financePage = homePage.goToFinancePage();
         calendarPage = financePage.goToMarketDataCalenderPage();
         calendarPage = calendarPage.submitDate(testDate);
     }
 
-    @Test(testName = "Thursday values list is not empty",groups = {"Values Check"})
+    @Test(testName = "Thursday values list is not empty",groups = "Values Check")
     void areValuesEmpty(){
         Assert.assertFalse(calendarPage.getValuesList().isEmpty());
     }
@@ -137,8 +143,9 @@ public class CalendarTest {
         Assert.assertNotNull(calendarPage.getEconomicEventsElement());
     }
 
-    //Assert correct date TODO(1): Future Improvements, Extract updated date text
-    @Test(testName = "Date is set to 16th June 2022", groups = {"Date check"})
+    //Assert correct date, currently test is only valid for current week Thu
+    // TODO(1): Future Improvements, Extract updated date text
+    @Test(testName = "Date is set to 16th June 2022", groups = {"Date Check"})
     @Parameters({"dateDayNum","dateMonth","dateDay"})
     void correctDateSet(String dateDayNum, String dateMonth, String dateDay){
         String expectedDate = dateDayNum+" "+dateMonth+" "+dateDay;
@@ -185,8 +192,84 @@ public class CalendarTest {
         }
     }
 
-    //Background Colours check
-    //correct font
+    @Test(testName = "Earnings value field background colour check", groups = {"Css Checks","Background Colour"})
+    @Parameters("earningsBackgroundColour")
+    void earningsBackgroundCoulourCheck(String earningsBackgroundColour){
+        if(calendarPage.getEarningsElement()!=null){
+            Assert.assertEquals(calendarPage.getBackgroundColor(calendarPage.getEarningsElement()),earningsBackgroundColour);
+        } else{
+            Assert.assertNull(calendarPage.getEarningsElement());
+        }
+    }
+
+    @Test(testName = "StockSplits value field background colour check", groups = {"Css Checks","Background Colour"})
+    @Parameters("stockSplitsBackgroundColour")
+    void stockSplitsBackgroundCoulourCheck(String stockSplitsBackgroundColour){
+        if(calendarPage.getStockSplitsElement()!=null){
+            Assert.assertEquals(calendarPage.getBackgroundColor(calendarPage.getStockSplitsElement()),stockSplitsBackgroundColour);
+        } else{
+            Assert.assertNull(calendarPage.getStockSplitsElement());
+        }
+    }
+
+    @Test(testName = "IPO_Pricing value field background colour check", groups = {"Css Checks","Background Colour"})
+    @Parameters("ipo_PricingBackgroundColour")
+    void ipo_PricingBackgroundCoulourCheck(String ipo_PricingBackgroundColour){
+        if(calendarPage.getIPO_PricingElement()!=null){
+            Assert.assertEquals(calendarPage.getBackgroundColor(calendarPage.getIPO_PricingElement()),ipo_PricingBackgroundColour);
+        } else{
+            Assert.assertNull(calendarPage.getIPO_PricingElement());
+        }
+    }
+
+    @Test(testName = "EconomicEvents value field background colour check", groups = {"Css Checks","Background Colour"})
+    @Parameters("economicEventsBackgroundColour")
+    void economicEventsBackgroundCoulourCheck(String economicEventsBackgroundColour){
+        if(calendarPage.getEconomicEventsElement()!=null){
+            Assert.assertEquals(calendarPage.getBackgroundColor(calendarPage.getEconomicEventsElement()),economicEventsBackgroundColour);
+        } else{
+            Assert.assertNull(calendarPage.getEconomicEventsElement());
+        }
+    }
+
+    @Test(testName = "Earnings value field font check", groups = {"Css Checks","Font"})
+    @Parameters("expectedFontSize")
+    void EarningsFontCheck(String expectedFontSize){
+        if(calendarPage.getEarningsElement()!=null){
+            Assert.assertEquals(calendarPage.getEarningsElement().getCssValue("font-size"),expectedFontSize);
+        } else{
+            Assert.assertNull(calendarPage.getEarningsElement());
+        }
+    }
+
+    @Test(testName = "StockSplits value field font check", groups = {"Css Checks","Font"})
+    @Parameters("expectedFontSize")
+    void stockSplitsFontCheck(String expectedFontSize){
+        if(calendarPage.getStockSplitsElement()!=null){
+            Assert.assertEquals(calendarPage.getStockSplitsElement().getCssValue("font-size"),expectedFontSize);
+        } else{
+            Assert.assertNull(calendarPage.getStockSplitsElement());
+        }
+    }
+
+    @Test(testName = "IPO_Pricing value field font check", groups = {"Css Checks","Font"})
+    @Parameters("expectedFontSize")
+    void ipo_PricingFontCheck(String expectedFontSize){
+        if(calendarPage.getIPO_PricingElement()!=null){
+            Assert.assertEquals(calendarPage.getIPO_PricingElement().getCssValue("font-size"),expectedFontSize);
+        } else{
+            Assert.assertNull(calendarPage.getIPO_PricingElement());
+        }
+    }
+    @Test(testName = "EconomicEvents value field font check", groups = {"Css Checks","Font"})
+    @Parameters("expectedFontSize")
+    void economicEventsFontCheck(String expectedFontSize){
+        if(calendarPage.getEconomicEventsElement()!=null){
+            Assert.assertEquals(calendarPage.getEconomicEventsElement().getCssValue("font-size"),expectedFontSize);
+        } else{
+            Assert.assertNull(calendarPage.getEconomicEventsElement());
+        }
+    }
 
     @AfterMethod(alwaysRun = true)
     public void teardown(){

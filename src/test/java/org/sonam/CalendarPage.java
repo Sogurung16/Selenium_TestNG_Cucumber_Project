@@ -2,6 +2,7 @@ package org.sonam;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -65,7 +66,12 @@ public class CalendarPage extends TestBase {
     }
 
     public WebElement getValueElement(By by){
-        return valuesListElement.findElement(by);
+        try{
+            return valuesListElement.findElement(by);
+        }catch (StaleElementReferenceException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public boolean isButtonClickable(WebElement element){
@@ -82,43 +88,47 @@ public class CalendarPage extends TestBase {
     }
 
     public WebElement getEarningsElement() {
-        WebElement earningsElement = null;
+        WebElement element;
         try {
-            earningsElement = getValueElement(By.cssSelector("a[style='background-color:#b6e0ff']"));
+            element = getValueElement(By.cssSelector("a[style='background-color:#b6e0ff']"));
         } catch (NoSuchElementException e) {
             e.getLocalizedMessage();
+            element = null;
         }
-        return earningsElement;
+        return element;
     }
 
     public WebElement getStockSplitsElement(){
-        WebElement earningsElement = null;
+        WebElement element;
         try {
-            earningsElement = getValueElement(By.cssSelector("a[style='background-color:#ffcfb8']"));
+            element = getValueElement(By.cssSelector("a[style='background-color:#ffcfb8']"));
         } catch (NoSuchElementException e) {
             e.getLocalizedMessage();
+            element = null;
         }
-        return earningsElement;
+        return element;
     }
 
     public WebElement getIPO_PricingElement(){
-        WebElement earningsElement = null;
+        WebElement element;
         try {
-            earningsElement = getValueElement(By.cssSelector("a[style='background-color:#e7ccff']"));
+            element = getValueElement(By.cssSelector("a[style='background-color:#e7ccff']"));
         } catch (NoSuchElementException e) {
             e.getLocalizedMessage();
+            element = null;
         }
-        return earningsElement;
+        return element;
     }
 
     public WebElement getEconomicEventsElement(){
-        WebElement earningsElement = null;
+        WebElement element;
         try {
-            earningsElement = getValueElement(By.cssSelector("a[style='background-color:#9debc2']"));
+            element = getValueElement(By.cssSelector("a[style='background-color:#9debc2']"));
         } catch (NoSuchElementException e) {
             e.getLocalizedMessage();
+            element = null;
         }
-        return earningsElement;
+        return element;
     }
 
     public WebElement getDateDayNumElement(){
@@ -196,5 +206,9 @@ public class CalendarPage extends TestBase {
 
     public String getDateMonth(){
         return getDateMonthElement().getText();
+    }
+
+    public String getBackgroundColor(WebElement element){
+        return element.getCssValue("background-color");
     }
 }

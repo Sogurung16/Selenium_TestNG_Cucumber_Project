@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-
-<suite name="Yahoo Test Suite">
-    <parameter name="browser" value="chrome"></parameter>
+<suite name="Yahoo Test Suite" verbose="1">
+    <parameter name="browser" value="edge"></parameter>
     <parameter name="url" value="https://uk.yahoo.com/"></parameter>
-    <parameter name="year" value="2022"></parameter>
+    <!--<parameter name="year" value="2022"></parameter>
     <parameter name="month" value="June"></parameter>
-    <parameter name="day" value="16"></parameter>
+    <parameter name="day" value="16"></parameter>-->
+    <parameter name="xssfSheet" value="Credentials"></parameter>
+    <parameter name="filePath" value="src/test/resources/excel/Credentials.xlsx"></parameter>
+
+    <test name = "Test Runner">
+        <classes>
+            <class name="org.sonam.cucumber.TestRunner"></class>
+        </classes>
+    </test>
+
     <!--<test name="Navigation">
-        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="browser" value="edge"></parameter>
         <parameter name="url" value="https://uk.yahoo.com/"></parameter>
         <packages>
-            <package name="src/test/java/org/sonam/login" />
+            <package name="src/test/java/org/sonam/login"/>
         </packages>
         <classes>
             <class name ="org.sonam.tests.NavigationTest">\</class>
         </classes>
     </test>-->
-    <test name="Values Checks">
-        <parameter name="dateDay" value="Thu"></parameter>>
-        <parameter name="dateMonth" value="Jun"></parameter>
-        <parameter name="dateDayNum" value="16"></parameter>
-
+    <!--<test name="Values Checks">
         <packages>
-            <package name="src/test/java/org/sonam" />
+            <package name="src/test/java/org/sonam"/>
         </packages>
-        <!--<groups>
+        <groups>
             <run>
                 <include name="Values Check"></include>
             </run>
-        </groups>-->
+        </groups>
         <classes>
-            <class name="org.sonam.tests.CalendarTest">
-                <methods>
-                    <include name="correctDateSet"></include>
-                </methods>
-            </class>
+            <class name="org.sonam.tests.CalendarTest"></class>
         </classes>
-    </test>
+    </test>-->
     <!--<test name="Spelling Checks">
         <parameter name="earningsString" value="Earnings"></parameter>
         <parameter name="stockSplitsString" value="Stock splits"></parameter>
         <parameter name="ipo_PricingString" value="IPO pricing"></parameter>
         <parameter name="economicEventsString" value="Economic events"></parameter>>
         <packages>
-            <package name="src/test/java/org/sonam" />
+            <package name="src/test/java/org/sonam"/>
         </packages>
         <groups>
             <run>
@@ -57,7 +57,7 @@
     </test>-->
     <!--<test name="Values Numbers Check">
         <packages>
-            <package name="src/test/java/org/sonam" />
+            <package name="src/test/java/org/sonam"/>
         </packages>
         <groups>
             <run>
@@ -67,19 +67,71 @@
         <classes>
             <class name="org.sonam.tests.CalendarTest"></class>
         </classes>
-    </test>-->
-    <!--<test name="Date Check">
+    </test>
+    <test name="Date Check">
         <parameter name="dateDay" value="Thu"></parameter>>
+        <parameter name="dateMonth" value="Jun"></parameter>
+        <parameter name="dateDayNum" value="16"></parameter>
         <packages>
-            <package name="src/test/java/org/sonam" />
+            <package name="src/test/java/org/sonam"/>
         </packages>
         <groups>
             <run>
-                <include name="Value Number Check"></include>
+                <include name="Date Check"></include>
             </run>
         </groups>
         <classes>
             <class name="org.sonam.tests.CalendarTest"></class>
+        </classes>
+    </test>-->
+    <!--<test name="Background Colour Check">
+        <parameter name="earningsBackgroundColour" value="rgba(182, 224, 255, 1)"></parameter>>
+        <parameter name="stockSplitsBackgroundColour" value="rgba(255, 207, 184, 1)"></parameter>
+        <parameter name="ipo_PricingBackgroundColour" value="rgba(231, 204, 255, 1)"></parameter>
+        <parameter name="economicEventsBackgroundColour" value="rgba(157, 235, 194, 1)"></parameter>
+
+        <packages>
+            <package name="src/test/java/org/sonam"/>
+        </packages>
+        <groups>
+            <run>
+                <include name="Background Colour"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.sonam.tests.CalendarTest"></class>
+        </classes>
+    </test>-->
+    <!--<test name="Font Check">
+        <parameter name="expectedFontSize" value="12px"></parameter>
+        <packages>
+            <package name="src/test/java/org/sonam"/>
+        </packages>
+        <groups>
+            <run>
+                <include name="Font"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.sonam.tests.CalendarTest"></class>
+        </classes>
+    </test>-->
+    <!--<test name="Login Checks">
+        <parameter name="validUsername" value="1,0"></parameter>>
+        <parameter name="validPassword" value="1,1"></parameter>
+        <parameter name="invalidUsername" value="3,0"></parameter>
+        <parameter name="invalidPassword" value="3,1"></parameter>
+
+        <packages>
+            <package name="src/test/java/org/sonam"/>
+        </packages>
+        <groups>
+            <run>
+                <include name="Login Checks"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="org.sonam.tests.LoginTest"></class>
         </classes>
     </test>-->
 </suite>

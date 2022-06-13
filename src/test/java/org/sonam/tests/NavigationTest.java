@@ -7,25 +7,33 @@ import org.sonam.login.SignInPasswordPage;
 import org.sonam.login.SignInUsernamePage;
 import org.sonam.nav.FinancePage;
 import org.sonam.nav.HomePage;
+import org.sonam.util.ExcelDataProvider;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class NavigationTest {
     private LandingPage landingPage;
 
-    @BeforeMethod
-    @Parameters({"browser", "url"})
+    @Parameters({"browser", "url","day","month","year","username","password"})
     public void setup(String browser, String url){
         TestBase.initialisation(browser, url);
     }
 
+    @Parameters({"day","month","year","username","password"})
     @Test(description = "Navigation Test", invocationCount = 5)
-    void navigationTest(){
+    void navigationTest(String username, String password){
         landingPage = new LandingPage();
         SignInUsernamePage signInUsernamePage = landingPage.gotToSignInPage();
-        SignInPasswordPage signInPasswordPage = signInUsernamePage.goToSignInPasswordPage("FirstTestLogin_12");
-        HomePage homePage = signInPasswordPage.gotToHomePage("TestAbc_12!");
+        signInUsernamePage.enterUsername(ExcelDataProvider.getCellValue(username));
+
+        SignInPasswordPage signInPasswordPage = signInUsernamePage.goToSignInPasswordPage();
+        signInPasswordPage.enterPassword(ExcelDataProvider.getCellValue(password));
+
+        HomePage homePage = signInPasswordPage.goToHomePage();
+
         FinancePage financePage = homePage.goToFinancePage();
         CalendarPage calendarPage = financePage.goToMarketDataCalenderPage();
+        Assert.assertNotNull(calendarPage);
     }
     //successful end url navi
 
