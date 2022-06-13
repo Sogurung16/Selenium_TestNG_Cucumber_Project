@@ -3,6 +3,7 @@ package org.sonam.stepdefs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.TimeoutException;
 import org.sonam.login.LandingPage;
 import org.sonam.login.SignInPasswordPage;
 import org.sonam.login.SignInUsernamePage;
@@ -63,7 +64,11 @@ public class LoginStepdefs{
         signInUsernamePage.enterUsername(
                 ExcelDataProvider.getCellValue(
                         PropertiesLoader.getProperties().getProperty("validUsername")));
-        Assert.assertNull(signInUsernamePage.goToSignInPasswordPage(););
+        try{
+            Assert.assertNull(signInUsernamePage.goToSignInPasswordPage());
+        } catch (TimeoutException timeoutException){
+            timeoutException.printStackTrace();
+        }
     }
 
     @Then("I should not see the homepage")
@@ -71,6 +76,10 @@ public class LoginStepdefs{
         signInPasswordPage.enterPassword(ExcelDataProvider.getCellValue(
                 PropertiesLoader.getProperties().getProperty("invalidPassword")
         ));
-        Assert.assertNull(signInPasswordPage.goToHomePage();
+        try{
+            Assert.assertNull(signInPasswordPage.goToHomePage());
+        } catch (TimeoutException timeoutException){
+            timeoutException.printStackTrace();
+        }
     }
 }
