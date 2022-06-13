@@ -11,7 +11,7 @@ import org.testng.annotations.Parameters;
 @CucumberOptions(
     plugin = {"pretty", "html:target/cucumber-reports/cucumber.html", "json:target/cucumber-reports/cucumber.json"},
     features = "src/test/resources/featureFiles",
-    glue = {"org.sonam.stepdefs"}, tags = "@navigation"
+    glue = {"org.sonam.stepdefs"}
 )
 public class TestRunner extends AbstractTestNGCucumberTests{
     @Parameters({"browser", "url","filePath","xssfSheet"})

@@ -20,22 +20,21 @@ public class LoginStepdefs{
     @Given("I am on the Username page")
     public void iAmOnTheUsernamePage() {
         landingPage = new LandingPage();
-        signInUsernamePage = landingPage.gotToSignInPage();
     }
 
     @When("I enter valid username details")
     public void iEnterUsernameDetails() {
+        signInUsernamePage = landingPage.gotToSignInPage();
         signInUsernamePage.enterUsername(
                 ExcelDataProvider.getCellValue(
-                PropertiesLoader.getProperties().getProperty("validUsername")
-                ));
+                PropertiesLoader.getProperties().getProperty("validUsername")));
     }
 
     @When("I enter valid password details")
     public void iEnterPasswordDetails() {
+        signInPasswordPage = signInUsernamePage.goToSignInPasswordPage();
         signInPasswordPage.enterPassword(ExcelDataProvider.getCellValue(
-                PropertiesLoader.getProperties().getProperty("validPassword")
-        ));
+                PropertiesLoader.getProperties().getProperty("validPassword")));
     }
 
     @Then("I should see the homepage")
@@ -46,26 +45,25 @@ public class LoginStepdefs{
 
     @When("I enter invalid username details")
     public void iEnterInvalidUsernameDetails() {
-        signInPasswordPage.enterPassword(ExcelDataProvider.getCellValue(
-                PropertiesLoader.getProperties().getProperty("invalidUsername")
-        ));
+        signInUsernamePage = landingPage.gotToSignInPage();
+        signInUsernamePage.enterUsername(
+                ExcelDataProvider.getCellValue(
+                        PropertiesLoader.getProperties().getProperty("invalidUsername")));
     }
 
     @When("I enter invalid password details")
     public void iEnterInvalidPasswordDetails() {
+        signInPasswordPage = signInUsernamePage.goToSignInPasswordPage();
         signInPasswordPage.enterPassword(ExcelDataProvider.getCellValue(
-                PropertiesLoader.getProperties().getProperty("invalidPassword")
-        ));
+                PropertiesLoader.getProperties().getProperty("invalidPassword")));
     }
 
     @Then("I should not see the Password page")
     public void iShouldNotSeeThePasswordPage() {
         signInUsernamePage.enterUsername(
                 ExcelDataProvider.getCellValue(
-                        PropertiesLoader.getProperties().getProperty("validUsername")
-                ));
-        signInPasswordPage = signInUsernamePage.goToSignInPasswordPage();
-        Assert.assertNull(signInPasswordPage);
+                        PropertiesLoader.getProperties().getProperty("validUsername")));
+        Assert.assertNull(signInUsernamePage.goToSignInPasswordPage(););
     }
 
     @Then("I should not see the homepage")
@@ -73,7 +71,6 @@ public class LoginStepdefs{
         signInPasswordPage.enterPassword(ExcelDataProvider.getCellValue(
                 PropertiesLoader.getProperties().getProperty("invalidPassword")
         ));
-        homePage = signInPasswordPage.goToHomePage();
-        Assert.assertNull(homePage);
+        Assert.assertNull(signInPasswordPage.goToHomePage();
     }
 }
